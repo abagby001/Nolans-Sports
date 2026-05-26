@@ -1,3 +1,19 @@
+async function logNolansSportsActivity() {
+    try {
+        const { data, error } = await supabase
+            // 🔒 TARGETS YOUR EXACT NEW TABLE
+            .from('Nolans-Sports')
+            .insert([
+                { page_url: window.location.href }
+            ]);
+            
+        if (error) console.error("Supabase Log Error:", error);
+    } catch (err) {
+        console.error("Database connection failed:", err);
+    }
+}
+logNolansSportsActivity();
+
 document.addEventListener("DOMContentLoaded", () => {
     // 1. Target the main page title header safely
     const pageTitle = document.querySelector(".pageTitle") || document.querySelector("h1");
